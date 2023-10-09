@@ -1,3 +1,3 @@
 module github.com/mrcrilly/goawx
 
-go 1.14
+go 1.19

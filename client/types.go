@@ -324,50 +324,64 @@ type Ping struct {
 
 // JobTemplate represents the awx api job template.
 type JobTemplate struct {
-	ID                    int         `json:"id"`
-	Type                  string      `json:"type"`
-	URL                   string      `json:"url"`
-	Related               *Related    `json:"related"`
-	SummaryFields         *Summary    `json:"summary_fields"`
-	Created               time.Time   `json:"created"`
-	Modified              time.Time   `json:"modified"`
-	Name                  string      `json:"name"`
-	Description           string      `json:"description"`
-	JobType               string      `json:"job_type"`
-	Inventory             int         `json:"inventory"`
-	Project               int         `json:"project"`
-	Playbook              string      `json:"playbook"`
-	Forks                 int         `json:"forks"`
-	Limit                 string      `json:"limit"`
-	Verbosity             int         `json:"verbosity"`
-	ExtraVars             string      `json:"extra_vars"`
-	JobTags               string      `json:"job_tags"`
-	ForceHandlers         bool        `json:"force_handlers"`
-	SkipTags              string      `json:"skip_tags"`
-	StartAtTask           string      `json:"start_at_task"`
-	Timeout               int         `json:"timeout"`
-	UseFactCache          bool        `json:"use_fact_cache"`
-	LastJobRun            interface{} `json:"last_job_run"`
-	LastJobFailed         bool        `json:"last_job_failed"`
-	NextJobRun            interface{} `json:"next_job_run"`
-	Status                string      `json:"status"`
-	HostConfigKey         string      `json:"host_config_key"`
-	AskDiffModeOnLaunch   bool        `json:"ask_diff_mode_on_launch"`
-	AskVariablesOnLaunch  bool        `json:"ask_variables_on_launch"`
-	AskLimitOnLaunch      bool        `json:"ask_limit_on_launch"`
-	AskTagsOnLaunch       bool        `json:"ask_tags_on_launch"`
-	AskSkipTagsOnLaunch   bool        `json:"ask_skip_tags_on_launch"`
-	AskJobTypeOnLaunch    bool        `json:"ask_job_type_on_launch"`
-	AskVerbosityOnLaunch  bool        `json:"ask_verbosity_on_launch"`
-	AskInventoryOnLaunch  bool        `json:"ask_inventory_on_launch"`
-	AskCredentialOnLaunch bool        `json:"ask_credential_on_launch"`
-	SurveyEnabled         bool        `json:"survey_enabled"`
-	BecomeEnabled         bool        `json:"become_enabled"`
-	DiffMode              bool        `json:"diff_mode"`
-	AllowSimultaneous     bool        `json:"allow_simultaneous"`
-	CustomVirtualenv      interface{} `json:"custom_virtualenv"`
-	Credential            int         `json:"credential"`
-	VaultCredential       interface{} `json:"vault_credential"`
+	ID                              int         `json:"id"`
+	Type                            string      `json:"type"`
+	URL                             string      `json:"url"`
+	Related                         *Related    `json:"related"`
+	SummaryFields                   *Summary    `json:"summary_fields"`
+	Created                         time.Time   `json:"created"`
+	Modified                        time.Time   `json:"modified"`
+	Name                            string      `json:"name"`
+	Description                     string      `json:"description"`
+	JobType                         string      `json:"job_type"`
+	Inventory                       int         `json:"inventory"`
+	Project                         int         `json:"project"`
+	Playbook                        string      `json:"playbook"`
+	SCMBranch                       string      `json:"scm_branch"`
+	Forks                           int         `json:"forks"`
+	Limit                           string      `json:"limit"`
+	Verbosity                       int         `json:"verbosity"`
+	ExtraVars                       string      `json:"extra_vars"`
+	JobTags                         string      `json:"job_tags"`
+	ForceHandlers                   bool        `json:"force_handlers"`
+	SkipTags                        string      `json:"skip_tags"`
+	StartAtTask                     string      `json:"start_at_task"`
+	Timeout                         int         `json:"timeout"`
+	UseFactCache                    bool        `json:"use_fact_cache"`
+	Organization                    int         `json:"organization"`
+	LastJobRun                      interface{} `json:"last_job_run"`
+	LastJobFailed                   bool        `json:"last_job_failed"`
+	NextJobRun                      interface{} `json:"next_job_run"`
+	Status                          string      `json:"status"`
+	ExecutionEnvironment            int         `json:"execution_environment"`
+	HostConfigKey                   string      `json:"host_config_key"`
+	AskSCMBranchOnLaunch            bool        `json:"ask_scm_branch_on_launch"`
+	AskDiffModeOnLaunch             bool        `json:"ask_diff_mode_on_launch"`
+	AskVariablesOnLaunch            bool        `json:"ask_variables_on_launch"`
+	AskLimitOnLaunch                bool        `json:"ask_limit_on_launch"`
+	AskTagsOnLaunch                 bool        `json:"ask_tags_on_launch"`
+	AskSkipTagsOnLaunch             bool        `json:"ask_skip_tags_on_launch"`
+	AskJobTypeOnLaunch              bool        `json:"ask_job_type_on_launch"`
+	AskVerbosityOnLaunch            bool        `json:"ask_verbosity_on_launch"`
+	AskInventoryOnLaunch            bool        `json:"ask_inventory_on_launch"`
+	AskCredentialOnLaunch           bool        `json:"ask_credential_on_launch"`
+	AskExecutionEnvironmentOnLaunch bool        `json:"ask_execution_environment_on_launch"`
+	AskLabelsOnLaunch               bool        `json:"ask_labels_on_launch"`
+	AskForksOnLaunch                bool        `json:"ask_forks_on_launch"`
+	AskJobSliceCountOnLaunch        bool        `json:"ask_job_slice_count_on_launch"`
+	AskTimeoutOnLaunch              bool        `json:"ask_timeout_on_launch"`
+	AskInstanceGroupsOnLaunch       bool        `json:"ask_instance_groups_on_launch"`
+	SurveyEnabled                   bool        `json:"survey_enabled"`
+	BecomeEnabled                   bool        `json:"become_enabled"`
+	DiffMode                        bool        `json:"diff_mode"`
+	AllowSimultaneous               bool        `json:"allow_simultaneous"`
+	CustomVirtualenv                interface{} `json:"custom_virtualenv"`
+	JobSliceCount                   int         `json:"job_slice_count"`
+	WebHookService                  string      `json:"webhook_service"`
+	WebHookCredential               int         `json:"webhook_credential"`
+	PreventInstanceGroupFallback    bool        `json:"prevent_instance_group_fallback"`
+	Credential                      int         `json:"credential"`
+	VaultCredential                 interface{} `json:"vault_credential"`
 }
 
 // JobLaunch represents the awx api job launch.
@@ -446,6 +460,7 @@ type Job struct {
 	Inventory               int               `json:"inventory"`
 	Project                 int               `json:"project"`
 	Playbook                string            `json:"playbook"`
+	SCMBranch               string            `json:"scm_branch"`
 	Forks                   int               `json:"forks"`
 	Limit                   string            `json:"limit"`
 	Verbosity               int               `json:"verbosity"`
@@ -456,20 +471,25 @@ type Job struct {
 	StartAtTask             string            `json:"start_at_task"`
 	Timeout                 int               `json:"timeout"`
 	UseFactCache            bool              `json:"use_fact_cache"`
+	Organization            int               `json:"organization"`
 	UnifiedJobTemplate      int               `json:"unified_job_template"`
 	LaunchType              string            `json:"launch_type"`
 	Status                  string            `json:"status"`
+	ExecutionEnvironment    int               `json:"execution_environment"`
 	Failed                  bool              `json:"failed"`
 	Started                 time.Time         `json:"started"`
 	Finished                time.Time         `json:"finished"`
+	CanceledOn              time.Time         `json:"canceled_on"`
 	Elapsed                 float64           `json:"elapsed"`
 	JobArgs                 string            `json:"job_args"`
 	JobCwd                  string            `json:"job_cwd"`
 	JobEnv                  map[string]string `json:"job_env"`
 	JobExplanation          string            `json:"job_explanation"`
 	ExecutionNode           string            `json:"execution_node"`
+	ControllerNode          string            `json:"controller_node"`
 	ResultTraceback         string            `json:"result_traceback"`
 	EventProcessingFinished bool              `json:"event_processing_finished"`
+	WorkUnitId              string            `json:"work_unit_id"`
 	JobTemplate             int               `json:"job_template"`
 	PasswordsNeededToStart  []interface{}     `json:"passwords_needed_to_start"`
 	AskDiffModeOnLaunch     bool              `json:"ask_diff_mode_on_launch"`
@@ -819,4 +839,22 @@ type WorkflowJobTemplateNode struct {
 	AlwaysNodes            []int     `json:"always_nodes"`
 	AllParentsMustConverge bool      `json:"all_parents_must_converge"`
 	Identifier             string    `json:"identifier"`
+}
+
+// ExecutionEnvironment represents the awx api execution environment.
+type ExecutionEnvironment struct {
+	ID            int       `json:"id"`
+	Type          string    `json:"type"`
+	URL           string    `json:"url"`
+	Related       *Related  `json:"related"`
+	SummaryFields *Summary  `json:"summary_fields"`
+	Created       time.Time `json:"created"`
+	Modified      time.Time `json:"modified"`
+	Name          string    `json:"name"`
+	Description   string    `json:"description"`
+	Organization  int       `json:"organization"`
+	Image         string    `json:"image"`
+	Managed       bool      `json:"managed"`
+	Credential    int       `json:"credential"`
+	Pull          string    `json:"pull"`
 }
